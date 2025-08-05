@@ -2,7 +2,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy import asc, desc
 from typing import Optional
 from api._database.models import Formulario, Pergunta
-from api._shared.schemas import FormularioCreate
+from api._shared.schemas import FormularioCreate, PerguntaCreate
+from fastapi import HTTPException
 
 
 def create_formulario_service(db: Session, formulario: FormularioCreate):
@@ -50,7 +51,14 @@ def list_formularios_service(
 
 
 def list_perguntas_service(
-    db: Session, formulario_id: int, tipo: Optional[str], obrigatoria: Optional[bool], skip: int, limit: int
+    db: Session,
+    formulario_id: int,
+    tipo: Optional[str],
+    obrigatoria: Optional[bool],
+    sort_by: str,
+    sort_order,
+    skip: int,
+    limit: int,
 ):
     query = db.query(Pergunta).filter(Pergunta.id_formulario == formulario_id)
 
@@ -58,5 +66,21 @@ def list_perguntas_service(
         query = query.filter(Pergunta.tipo_pergunta == tipo)
     if obrigatoria is not None:
         query = query.filter(Pergunta.obrigatoria == obrigatoria)
-
+    sort_column = getattr(Pergunta, sort_by, Pergunta.id)
+    if sort_order.lower() == "desc":
+        query = query.order_by(desc(sort_column))
+    else:
+        query = query.order_by(asc(sort_column))
     return query.offset(skip).limit(limit).all()
+
+
+def create_perguntas_service(db: Session, formulario_id: int, perguntas: list[PerguntaCreate]):
+    formulario = db.query(Formulario).filter(Formulario.id == formulario_id).first()
+    if not formulario:
+        raise HTTPException(status_code=404, detail="Formulário não encontrado")
+
+    novas_perguntas = [Pergunta(**p.dict(), id_formulario=formulario_id) for p in perguntas]
+
+    db.add_all(novas_perguntas)
+    db.commit()
+    return formulario.perguntas

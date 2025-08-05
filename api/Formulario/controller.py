@@ -2,8 +2,13 @@ from fastapi import APIRouter, Depends, Query
 from typing import Optional, List
 from sqlalchemy.orm import Session
 from api.utils.db_services import get_db
-from api.Formulario.service import list_formularios_service, create_formulario_service, list_perguntas_service
-from api._shared.schemas import FormularioCreate, FormularioResponse, PerguntaResponse
+from api.Formulario.service import (
+    list_formularios_service,
+    create_formulario_service,
+    list_perguntas_service,
+    create_perguntas_service,
+)
+from api._shared.schemas import FormularioCreate, FormularioResponse, PerguntaResponse, PerguntaCreate
 
 router = APIRouter(prefix="/formularios", tags=["Formulários"])
 
@@ -42,10 +47,9 @@ def get_perguntas(
 @router.post("/{formulario_id}/perguntas", response_model=List[PerguntaResponse])
 def post_perguntas(
     formulario_id: int,
-    tipo: Optional[str] = Query(None, description="Filtrar por tipo"),
-    obrigatoria: Optional[bool] = Query(None, description="Filtrar por obrigatoriedade"),
+    perguntas: List[PerguntaCreate],
     skip: int = Query(0, ge=0, description="Offset para paginação"),
     limit: int = Query(10, ge=1, le=100, description="Quantidade de itens por página"),
     db: Session = Depends(get_db),
 ):
-    return
+    return create_perguntas_service(db, formulario_id), perguntas

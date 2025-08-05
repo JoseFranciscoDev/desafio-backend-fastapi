@@ -17,6 +17,14 @@ class EnumTipoPergunta(PyEnum):
     NUMERO_DECIMAL = "NUMERO_DECIMAL"
 
 
+class User(Base):
+    __tablename__ = "user"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    email: Mapped[str] = mapped_column(String, unique=True, nullable=False)
+    password: Mapped[str] = mapped_column(String, nullable=False)
+    formularios: Mapped[List["Formulario"]] = relationship("Formulario", back_populates="user")
+
+
 class Formulario(Base):
     __tablename__ = "formulario"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -24,6 +32,8 @@ class Formulario(Base):
     descricao: Mapped[Optional[str]] = mapped_column(String(255))
     ordem: Mapped[int]
 
+    user: Mapped["User"] = relationship("User", back_populates="formularios")
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("user.id"))
     perguntas: Mapped[List["Pergunta"]] = relationship("Pergunta", back_populates="formulario")
 
     def __repr__(self):
@@ -39,7 +49,7 @@ class Pergunta(Base):
     titulo: Mapped[str] = mapped_column(String(255))
     codigo: Mapped[Optional[str]] = mapped_column(String(50))
     orientacao_resposta: Mapped[Optional[str]] = mapped_column(String(255))
-    ordem: Mapped[int]
+    ordem: Mapped[int] = mapped_column(Integer, default=1)
     obrigatoria: Mapped[bool] = mapped_column(Boolean, default=False)
     sub_pergunta: Mapped[bool] = mapped_column(Boolean, default=False)
     tipo_pergunta: Mapped[EnumTipoPergunta] = mapped_column(Enum(EnumTipoPergunta))
