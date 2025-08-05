@@ -179,10 +179,8 @@ GET /api/v1/formularios/?sort_by=id&sort_order=asc&skip=0&limit=10
 ├── migrations/
 ├── requirements.txt
 └── README.md
-```
+````
 
-Quer que eu já gere esse `requests.http` com os endpoints prontos para teste e uma seção no README com **comandos `curl` para cada endpoint**?
-```
 
 
 
