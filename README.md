@@ -1,5 +1,3 @@
-Aqui está o conteúdo completo já em **formato Markdown (.md)**:
-
 # 📋 Projeto FastAPI - Formulários & Autenticação
 
 Este projeto é uma **API REST** desenvolvida com **FastAPI** para gerenciamento de formulários e perguntas, incluindo autenticação via OAuth2.
@@ -185,4 +183,5 @@ GET /api/v1/formularios/?sort_by=id&sort_order=asc&skip=0&limit=10
 
 Quer que eu já gere esse `requests.http` com os endpoints prontos para teste e uma seção no README com **comandos `curl` para cada endpoint**?
 ```
+
 
