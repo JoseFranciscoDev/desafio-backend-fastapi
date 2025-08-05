@@ -22,7 +22,6 @@ Antes de começar, você precisa ter instalado em sua máquina:
 
 - [Python 3.11+](https://www.python.org/downloads/)
 - [PostgreSQL](https://www.postgresql.org/)
-- [Git](https://git-scm.com/)
 
 ---
 
@@ -88,7 +87,7 @@ A API estará disponível em:
 
 ## 📚 Documentação interativa
 
-Acesse a documentação automática do FastAPI:
+Acesse a documentação mais detalhada:
 
 * **Swagger UI:** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 * **Redoc:** [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
@@ -174,12 +173,13 @@ GET /api/v1/formularios/?sort_by=id&sort_order=asc&skip=0&limit=10
 │   │   └── service.py
 │   ├── utils/
 │   │   └── db_services.py
-│   ├── main.py
 │   └── ...
+├── main.py
 ├── migrations/
 ├── requirements.txt
 └── README.md
 ````
+
 
 
 
