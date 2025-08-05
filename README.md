@@ -30,10 +30,11 @@ Antes de começar, você precisa ter instalado em sua máquina:
 
 ### 1️⃣ **Clonar o repositório**
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone git@github.com:JoseFranciscoDev/desafio-backend-fastapi.git
 cd seu-repositorio
+````
 2️⃣ Criar e ativar um ambiente virtual
-bash
+````bash
 Copiar
 Editar
 python -m venv venv
