@@ -1,35 +1,35 @@
-📋 Projeto FastAPI - Formulários & Autenticação
-Este projeto é uma API REST desenvolvida com FastAPI para gerenciamento de formulários e perguntas, incluindo autenticação via OAuth2.
+# 📋 Projeto FastAPI - Formulários & Autenticação
 
-🚀 Tecnologias Utilizadas
-FastAPI - Framework web moderno para Python
+Este projeto é uma **API REST** desenvolvida com **FastAPI** para gerenciamento de formulários e perguntas, incluindo autenticação via OAuth2.
 
-SQLAlchemy - ORM para manipulação de banco de dados
+---
 
-Alembic - Controle de migrações
+## 🚀 Tecnologias Utilizadas
 
-PostgreSQL - Banco de dados relacional
+- **[FastAPI](https://fastapi.tiangolo.com/)** - Framework web moderno para Python
+- **[SQLAlchemy](https://www.sqlalchemy.org/)** - ORM para manipulação de banco de dados
+- **[Alembic](https://alembic.sqlalchemy.org/)** - Controle de migrações
+- **[PostgreSQL](https://www.postgresql.org/)** - Banco de dados relacional
+- **[Pydantic](https://docs.pydantic.dev/)** - Validação de dados
+- **[Uvicorn](https://www.uvicorn.org/)** - Servidor ASGI para rodar a aplicação
+- **[OAuth2](https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/)** - Autenticação e autorização
 
-Pydantic - Validação de dados
+---
 
-Uvicorn - Servidor ASGI para rodar a aplicação
+## ✅ Pré-requisitos
 
-OAuth2 - Autenticação e autorização
-
-✅ Pré-requisitos
 Antes de começar, você precisa ter instalado em sua máquina:
 
-Python 3.11+
+- [Python 3.11+](https://www.python.org/downloads/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Git](https://git-scm.com/)
 
-PostgreSQL
+---
 
-Git
+## 📦 Como rodar o projeto localmente
 
-📦 Como rodar o projeto localmente
-1️⃣ Clonar o repositório
-bash
-Copiar
-Editar
+### 1️⃣ **Clonar o repositório**
+```bash
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 2️⃣ Criar e ativar um ambiente virtual
@@ -37,8 +37,10 @@ bash
 Copiar
 Editar
 python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
+# Linux/Mac
+source venv/bin/activate
+# Windows
+venv\Scripts\activate
 3️⃣ Instalar as dependências
 bash
 Copiar
