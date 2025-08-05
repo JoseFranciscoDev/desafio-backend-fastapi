@@ -35,38 +35,36 @@ cd seu-repositorio
 ````
 2️⃣ Criar e ativar um ambiente virtual
 ````bash
-Copiar
-Editar
 python -m venv venv
+````
 # Linux/Mac
+````bash
 source venv/bin/activate
+
 # Windows
+````
 venv\Scripts\activate
+````
 3️⃣ Instalar as dependências
-bash
-Copiar
-Editar
+````bash
 pip install -r requirements.txt
+````
 4️⃣ Configurar variáveis de ambiente
 Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
-
-ini
-Copiar
-Editar
+````bash
 DATABASE_URL=postgresql+psycopg2://usuario:senha@localhost:5432/nome_do_banco
 SECRET_KEY=sua_chave_secreta
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
+````
 5️⃣ Rodar as migrações
-bash
-Copiar
-Editar
+```
 alembic upgrade head
+````
 6️⃣ Iniciar o servidor
-bash
-Copiar
-Editar
-uvicorn api.main:app --reload
+````bash
+fastapi dev main.py
+````
 A API estará disponível em:
 👉 http://127.0.0.1:8000
 
@@ -156,3 +154,4 @@ Editar
 ├── migrations/
 ├── requirements.txt
 └── README.md
+
