@@ -19,5 +19,3 @@ def login_for_acess_token(form_data: OAuth2PasswordRequestForm = Depends(), db: 
     if not verify_password(form_data.password, user.password):
         raise HTTPException(status_code=HTTPStatus.UNAUTHORIZED, detail="email ou senha incorretos")
     return
-
-
