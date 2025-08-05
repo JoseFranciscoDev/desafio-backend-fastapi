@@ -55,10 +55,10 @@ def list_perguntas_service(
     formulario_id: int,
     tipo: Optional[str],
     obrigatoria: Optional[bool],
-    sort_by: str,
-    sort_order,
     skip: int,
     limit: int,
+    sort_by: str = "id",
+    sort_order: str = "asc",
 ):
     query = db.query(Pergunta).filter(Pergunta.id_formulario == formulario_id)
 
@@ -84,3 +84,27 @@ def create_perguntas_service(db: Session, formulario_id: int, perguntas: list[Pe
     db.add_all(novas_perguntas)
     db.commit()
     return formulario.perguntas
+
+
+def update_formulario_service(db: Session, formulario_id: int, formulario: FormularioCreate):
+    db_formulario = db.query(Formulario).filter(Formulario.id == formulario_id).first()
+    if not db_formulario:
+        raise HTTPException(status_code=404, detail="Formulário não encontrado")
+
+    db_formulario.titulo = formulario.titulo
+    db_formulario.descricao = formulario.descricao
+    db_formulario.ordem = formulario.ordem
+
+    db.commit()
+    db.refresh(db_formulario)
+    return db_formulario
+
+
+def delete_formulario_service(db: Session, formulario_id: int):
+    db_formulario = db.query(Formulario).filter(Formulario.id == formulario_id).first()
+    if not db_formulario:
+        raise HTTPException(status_code=404, detail="Formulário não encontrado")
+
+    db.delete(db_formulario)
+    db.commit()
+    return None

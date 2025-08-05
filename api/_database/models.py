@@ -34,7 +34,9 @@ class Formulario(Base):
 
     user: Mapped["User"] = relationship("User", back_populates="formularios")
     user_id: Mapped[int] = mapped_column(Integer, ForeignKey("user.id"))
-    perguntas: Mapped[List["Pergunta"]] = relationship("Pergunta", back_populates="formulario")
+    perguntas: Mapped[List["Pergunta"]] = relationship(
+        "Pergunta", back_populates="formulario", cascade="all, delete-orphan"
+    )
 
     def __repr__(self):
         return f"<Formulario(id={self.id}, titulo={self.titulo})>"

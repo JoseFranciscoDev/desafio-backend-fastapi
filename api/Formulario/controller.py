@@ -7,6 +7,8 @@ from api.Formulario.service import (
     create_formulario_service,
     list_perguntas_service,
     create_perguntas_service,
+    delete_formulario_service,
+    update_formulario_service,
 )
 from api._shared.schemas import FormularioCreate, FormularioResponse, PerguntaResponse, PerguntaCreate
 
@@ -52,4 +54,14 @@ def post_perguntas(
     limit: int = Query(10, ge=1, le=100, description="Quantidade de itens por página"),
     db: Session = Depends(get_db),
 ):
-    return create_perguntas_service(db, formulario_id), perguntas
+    return create_perguntas_service(db, formulario_id)
+
+
+@router.put("/{formulario_id}", response_model=FormularioResponse)
+def update_formulario(formulario_id: int, formulario: FormularioCreate, db: Session = Depends(get_db)):
+    return update_formulario_service(db, formulario_id, formulario)
+
+
+@router.delete("/{formulario_id}", status_code=204)
+def delete_formulario(formulario_id: int, db: Session = Depends(get_db)):
+    return delete_formulario_service(db, formulario_id)
