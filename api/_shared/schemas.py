@@ -81,3 +81,8 @@ class PerguntaCreate(BaseModel):
     obrigatoria: Optional[bool] = False
     sub_pergunta: Optional[bool] = False
     tipo_pergunta: Optional[EnumTipoPergunta] = EnumTipoPergunta.TEXTO_LIVRE
+
+
+class Token(BaseModel):
+    token_type: str
+    acess_token: str
