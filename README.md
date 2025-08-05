@@ -78,7 +78,7 @@ alembic upgrade head
 ### 6️⃣ **Iniciar o servidor**
 
 ```bash
-fastapi dev api/main.py
+fastapi dev main.py
 ```
 
 A API estará disponível em:
@@ -183,5 +183,6 @@ GET /api/v1/formularios/?sort_by=id&sort_order=asc&skip=0&limit=10
 
 Quer que eu já gere esse `requests.http` com os endpoints prontos para teste e uma seção no README com **comandos `curl` para cada endpoint**?
 ```
+
 
 
