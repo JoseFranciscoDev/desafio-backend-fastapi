@@ -19,3 +19,6 @@ app.add_middleware(
 @app.get("/status")
 def status():
     return {"message": "api funcionando"}
+
+
+print("Hello World") # :)
